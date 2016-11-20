@@ -1,47 +1,34 @@
 package lab04.zad1;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import org.jbehave.core.configuration.Configuration;
+import org.jbehave.core.configuration.MostUsefulConfiguration;
+import org.jbehave.core.io.LoadFromClasspath;
+import org.jbehave.core.junit.JUnitStory;
+import org.jbehave.core.reporters.Format;
+import org.jbehave.core.reporters.StoryReporterBuilder;
+import org.jbehave.core.steps.InjectableStepsFactory;
+import org.jbehave.core.steps.InstanceStepsFactory;
 
-import org.junit.Test;
+public class CalculatorTest extends JUnitStory {
 
-public class CalculatorTest {
-
-	Calculator calculator = new Calculator();
-	
-	@Test
-	public void testCalculatorAdd() {
-		assertThat(calculator.add(3, 2), is(equalTo(5)));
-	}
-	
-	@Test
-	public void testCalculatorSub() {
-		assertThat(calculator.sub(9, 1), is(not(equalTo(10))));
-	}
-	
-	@Test
-	public void testCalculatorMulti() {
-		int result = calculator.multi(10, 1);
-		assertNotNull(result);
-		assertSame(10, result);
+	// Here we specify the configuration, starting from default
+	// MostUsefulConfiguration, and changing only what is needed
+	@Override
+	public Configuration configuration() {
+		return new MostUsefulConfiguration()
+				// where to find the stories
+				.useStoryLoader(new LoadFromClasspath(this.getClass()))
+				// CONSOLE and TXT reporting
+				.useStoryReporterBuilder(
+						new StoryReporterBuilder().withDefaultFormats()
+								.withFormats(Format.CONSOLE, Format.TXT));
 	}
 
-	@Test
-	public void testCalculatorDiv() {
-		int result = calculator.div(15, 3);
-		assertNotEquals(15, result);
-	}
-	
-	@Test
-	public void testCalculatorGreater() {
-		assertFalse(calculator.greater(10, 15));
-		assertTrue(calculator.greater(10, 5));
-	}
-	
-	@Test(expected = ArithmeticException.class)
-	public void testCalculatorDivisionByZero() {
-		calculator.div(10, 0);
+	// Here we specify the steps classes
+	@Override
+	public InjectableStepsFactory stepsFactory() {
+		// varargs, can have more that one steps classes
+		return new InstanceStepsFactory(configuration(), new CalculatorSteps());
 	}
 
 }
