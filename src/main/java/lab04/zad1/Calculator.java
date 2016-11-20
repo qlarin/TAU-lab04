@@ -1,4 +1,4 @@
-package lab01.zad1;
+package lab04.zad1;
 
 public class Calculator {
 	

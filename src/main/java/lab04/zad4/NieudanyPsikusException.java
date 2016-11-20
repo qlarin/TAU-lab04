@@ -1,4 +1,4 @@
-package lab01.zad4;
+package lab04.zad4;
 
 @SuppressWarnings("serial")
 public class NieudanyPsikusException extends Exception {};

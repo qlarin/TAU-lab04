@@ -1,9 +1,8 @@
-package lab01.zad1;
+package lab04.zad1;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
-import lab01.zad1.Calculator;
 
 import org.junit.Test;
 

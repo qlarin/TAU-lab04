@@ -1,4 +1,4 @@
-package lab01.zad3;
+package lab04.zad3;
 
 public class LiczbaRzymska {
 	

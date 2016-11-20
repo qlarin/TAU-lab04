@@ -1,9 +1,7 @@
-package lab01.zad4;
+package lab04.zad4;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import lab01.zad4.NieudanyPsikusException;
-import lab01.zad4.PsikusImpl;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;

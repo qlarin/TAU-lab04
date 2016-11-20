@@ -1,8 +1,7 @@
-package lab01.zad3;
+package lab04.zad3;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import lab01.zad3.LiczbaRzymska;
 
 import org.hamcrest.Matchers;
 import org.hamcrest.core.AnyOf;

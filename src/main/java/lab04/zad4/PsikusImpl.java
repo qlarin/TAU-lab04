@@ -1,4 +1,4 @@
-package lab01.zad4;
+package lab04.zad4;
 
 import java.util.ArrayList;
 import java.util.HashMap;

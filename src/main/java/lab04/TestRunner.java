@@ -1,4 +1,4 @@
-package lab01;
+package lab04;
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
