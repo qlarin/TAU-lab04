@@ -1,47 +1,33 @@
 package lab04.zad4;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import org.jbehave.core.configuration.Configuration;
+import org.jbehave.core.configuration.MostUsefulConfiguration;
+import org.jbehave.core.io.LoadFromClasspath;
+import org.jbehave.core.junit.JUnitStory;
+import org.jbehave.core.reporters.Format;
+import org.jbehave.core.reporters.StoryReporterBuilder;
+import org.jbehave.core.steps.InjectableStepsFactory;
+import org.jbehave.core.steps.InstanceStepsFactory;
 
-import org.hamcrest.Matchers;
-import org.junit.Test;
+public class PsikusImplTest extends JUnitStory{
 
-public class PsikusImplTest {
-
-	PsikusImpl psikus = new PsikusImpl();
-	
-	@Test
-	public void testCyfrokrad() {
-		assertThat(psikus.cyfrokrad(8), is(Matchers.nullValue()));
-		assertThat(psikus.cyfrokrad(109), Matchers.allOf(
-			Matchers.notNullValue(),
-			Matchers.anyOf(
-				is(Matchers.equalTo(10)),
-				is(Matchers.equalTo(19)),
-				is(Matchers.equalTo(9))
-			)
-		));
+	// Here we specify the configuration, starting from default
+	// MostUsefulConfiguration, and changing only what is needed
+	@Override
+	public Configuration configuration() {
+		return new MostUsefulConfiguration()
+				// where to find the stories
+				.useStoryLoader(new LoadFromClasspath(this.getClass()))
+				// CONSOLE and TXT reporting
+				.useStoryReporterBuilder(
+						new StoryReporterBuilder().withDefaultFormats()
+								.withFormats(Format.CONSOLE, Format.TXT));
 	}
 
-	@Test
-	public void testHultajchochla() {
-		Throwable ex = null;
-		try {
-			assertThat(psikus.hultajchochla(29), is(Matchers.equalTo(92)));
-			psikus.hultajchochla(8);
-		} catch (NieudanyPsikusException e) {
-			ex = e;
-		}
-		assertThat(ex, instanceOf(NieudanyPsikusException.class));
-	}
-	
-	@Test
-	public void testNieksztaltek() {
-		assertThat(psikus.nieksztaltek(376), Matchers.anyOf(
-			is(Matchers.equalTo(876)),
-			is(Matchers.equalTo(316)),
-			is(Matchers.equalTo(379))
-		));
-		assertThat(psikus.nieksztaltek(455), Matchers.equalTo(455));
+	// Here we specify the steps classes
+	@Override
+	public InjectableStepsFactory stepsFactory() {
+		// varargs, can have more that one steps classes
+		return new InstanceStepsFactory(configuration(), new PsikusImplSteps());
 	}
 }

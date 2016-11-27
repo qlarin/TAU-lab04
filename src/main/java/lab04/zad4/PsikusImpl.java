@@ -8,6 +8,16 @@ import java.util.Random;
 
 public class PsikusImpl implements Psikus {
 
+	private Integer result;
+
+	public Integer getResult() {
+		return result;
+	}
+
+	public void setResult(Integer liczba) {
+		result = liczba;
+	}
+
 	public Integer cyfrokrad(Integer liczba) {
 		Integer result = null;
 		String strLiczba = Integer.toString(liczba);
@@ -17,7 +27,8 @@ public class PsikusImpl implements Psikus {
 			String strNowaLiczba = strLiczba.substring(0, index) + strLiczba.substring(index + 1);
 			result = Integer.parseInt(strNowaLiczba);
 		}
-		return result;
+		setResult(result);
+		return getResult();
 	}
 
 	public Integer hultajchochla(Integer liczba) throws NieudanyPsikusException {
@@ -39,7 +50,8 @@ public class PsikusImpl implements Psikus {
 		} else {
 			throw new NieudanyPsikusException();
 		}
-		return Integer.parseInt(new String(characters));
+		setResult(Integer.parseInt(new String(characters)));
+		return getResult();
 	}
 
 	public Integer nieksztaltek(Integer liczba) {
@@ -52,7 +64,8 @@ public class PsikusImpl implements Psikus {
 		int index = new Random().nextInt(valuesList.size());
 		Integer chosenIndex = valuesList.get(index);
 		strLiczba = strLiczba.replace(Integer.toString(chosenIndex), Integer.toString(map.get(chosenIndex)));
-		return Integer.parseInt(strLiczba);
+		setResult(Integer.parseInt(strLiczba));
+		return getResult();
 	}
 
 }
