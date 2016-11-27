@@ -15,4 +15,4 @@ When set arguments to 10.00090 and 10.00089
 Then condition greater should return true
 
 When 15.17 division by 0
-Then an exception is thrown
+Then an infinity is acquired
