@@ -2,23 +2,39 @@ package lab04.zad2;
 
 public class Calculator {
 
-	public double add(double a, double b) {
-		return a + b;
+	private double left;
+	private double right;
+	private Object result;
+
+	public void setLeft(double l) {
+		left = l;
 	}
-	
-	public double sub(double a, double b) {
-		return a - b;
+
+	public void setRight(double r) {
+		right = r;
 	}
-	
-	public double multi(double a, double b) {
-		return a * b;
+
+	public Object getResult() {
+		return result;
 	}
-	
-	public double div(double a, double b) {
-		return a / b;
+
+	public void add() {
+		result = left + right;
 	}
-	
-	public boolean greater(double a, double b) {
-		return a > b;
+
+	public void sub() {
+		result = left - right;
+	}
+
+	public void multi() {
+		result = left * right;
+	}
+
+	public void div() {
+		result = left / right;
+	}
+
+	public void greater() {
+		result = left > right;
 	}
 }
